@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/help_layout"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    android:scrollbars="vertical"
+    android:isScrollContainer="true"
+    android:background="#FFFFFF">
+    <LinearLayout
+        android:id="@+id/help_ll"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/help_menu"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:textIsSelectable="true"
+	        android:textColor="#0000FF" />
+        <TextView
+	        android:layout_height="wrap_content"
+	        android:layout_width="0dp"
+	        android:layout_weight="1"
+	        android:textIsSelectable="false"
+	        android:textColor="#000000" />
+        <TextView 
+	        android:id="@+id/help_version"
+	        android:layout_height="wrap_content"
+	        android:layout_width="wrap_content"
+	        android:textIsSelectable="false"
+	        android:textColor="#000000" />
+    </LinearLayout>
+    
+    <WebView 
+        android:id="@+id/help_web_view"
+        android:layout_height="fill_parent"
+	    android:layout_width="match_parent"
+	    android:layout_below="@id/help_ll" />
+</RelativeLayout>

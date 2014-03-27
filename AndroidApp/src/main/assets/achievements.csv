@@ -1,0 +1,9 @@
+﻿Id,Name,Description,Medal,Achieved
+1,Mammal Novice,Achieved when answered 5 mammals in a row,bronze,0
+2,Mammal Competent,Achieved when answered 15 mammals in a row,silver,0
+3,Mammal Proficient,Achieved when answered 25 mammals in a row,silver,0
+4,Mammal Expert,Achieved when answered 35 mammals in a row,gold,0
+5,Bird Novice,Achieved when answered 5 birds in a row,bronze,0
+6,Bird Competent,Achieved when answered 15 birds in a row,silver,0
+7,Bird Proficient,Achieved when answered 25 birds in a row,silver,0
+8,Bird Expert,Achieved when answered 35 birds in a row,gold,0
