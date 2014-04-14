@@ -2,7 +2,7 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.1"
+    buildToolsVersion "19.0.2"
 
     defaultConfig {
         minSdkVersion 7
@@ -10,6 +10,7 @@ android {
         versionCode 5
         versionName "3.2"
     }
+
     buildTypes {
         release {
             runProguard false
