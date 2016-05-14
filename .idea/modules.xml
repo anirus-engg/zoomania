@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidApp/AndroidApp.iml" filepath="$PROJECT_DIR$/AndroidApp/AndroidApp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ZooMania.iml" filepath="$PROJECT_DIR$/ZooMania.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidApp/AndroidApp.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidApp/AndroidApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ZooMania.iml" filepath="$PROJECT_DIR$/.idea/modules/ZooMania.iml" />
     </modules>
   </component>
 </project>
-
