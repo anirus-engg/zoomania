@@ -27,9 +27,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
 import com.udaan.zoomania.logic.Achievements;
 import com.udaan.zoomania.logic.Board;
 import com.udaan.zoomania.logic.CountDownTimerPausable;
@@ -37,7 +37,7 @@ import com.udaan.zoomania.logic.CountDownTimerPausable;
 public class MainActivity extends Activity {
 	public static final boolean PAID = false;
 	public static final int MAX_CHOICE = 4;
-	private static final String MY_AD_UNIT_ID = "a151e2e9c3e4418";
+	private static final String MY_AD_UNIT_ID = "ca-app-pub-8996795250788622/4263178693";
 	private static String sTimer = "1:00.0";
 	private static int gameTime = 60000;
 	
@@ -85,11 +85,16 @@ public class MainActivity extends Activity {
 		//barcode = (ImageView)findViewById(R.id.barcode);
 		
 		if (!PAID) {
-			adView = new AdView(this, AdSize.SMART_BANNER, MY_AD_UNIT_ID);
+			//MobileAds.initialize(this, MY_AD_UNIT_ID);
+			adView = new AdView(this);
+			adView.setAdSize(AdSize.SMART_BANNER);
+            adView.setAdUnitId(MY_AD_UNIT_ID);
 			adLL = (LinearLayout) findViewById(R.id.ad_ll);
 		    adLL.addView(adView);
-		    adRequest = new AdRequest();
-		    adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
+		    adRequest = new AdRequest.Builder()
+                    //.addTestDevice("A4163BE3E608B682241FF4D4EA7BD69D")
+                    .build();
+		    //adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
 		    adView.loadAd(adRequest);
 		}
 	    
@@ -127,21 +132,23 @@ public class MainActivity extends Activity {
 		
 		prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
     	String category = prefs.getString("category", "birds");
-    	if (category.equals("mammals")) {
-    		sTimer = "1:00.0";
-    		gameTime = 60000;
-    		longCategory = getString(R.string.mammals);
-    	}
-    	else if (category.equals("birds")){
-    		sTimer = "1:00.0";
-    		gameTime = 60000;
-    		longCategory = getString(R.string.birds);
-    	}
-    	else if (category.equals("insects")){
-    		sTimer = "1:00.0";
-    		gameTime = 60000;
-    		longCategory = getString(R.string.insects);
-    	}
+		switch (category) {
+			case "mammals":
+				sTimer = "1:00.0";
+				gameTime = 60000;
+				longCategory = getString(R.string.mammals);
+				break;
+			case "birds":
+				sTimer = "1:00.0";
+				gameTime = 60000;
+				longCategory = getString(R.string.birds);
+				break;
+			case "insects":
+				sTimer = "1:00.0";
+				gameTime = 60000;
+				longCategory = getString(R.string.insects);
+				break;
+		}
     	
     	scoreText.setText(R.string.score_text);
     			
