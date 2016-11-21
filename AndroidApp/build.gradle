@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'zoomania_keystore'
             keyPassword '07zoo2013mania'
-            storeFile file('/home/aniruddha/Workspace/ZooMania/keystore/zoomania.keystore')
+            storeFile file('../keystore/zoomania.keystore')
             storePassword '07zoo2013mania'
         }
     }
