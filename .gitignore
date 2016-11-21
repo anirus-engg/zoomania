@@ -29,10 +29,6 @@
 # Files for the Dalvik VM
 *.dex
 
-# Built application files
-*.apk
-*.ap_
-
 # Java class files
 *.class
 
