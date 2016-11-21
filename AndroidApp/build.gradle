@@ -14,8 +14,8 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 25
-        versionCode 7
-        versionName "3.4"
+        versionCode 8
+        versionName "4.0"
         applicationId "com.udaan.zoomania.ui"
         signingConfig signingConfigs.config
     }

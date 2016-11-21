@@ -38,7 +38,8 @@ public class MainActivity extends Activity {
 	public static final boolean PAID = false;
 	public static final int MAX_CHOICE = 4;
 	private static final String MY_AD_UNIT_ID = "ca-app-pub-8996795250788622/4263178693";
-	private static String sTimer = "1:00.0";
+    private static final String BLANK_TIMER = "      ";
+    private static String sTimer = "1:00.0";
 	private static int gameTime = 60000;
 	
 	private ImageView flag0, flag1, flag2, flag3;
@@ -58,9 +59,10 @@ public class MainActivity extends Activity {
 	private CountDownTimerPausable countDown;
 	private boolean settingsClicked;
 	private boolean showResumeAlert = false;
+    private boolean showTimer = true;
 	private String longCategory = null;
 	Configuration config;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -92,7 +94,7 @@ public class MainActivity extends Activity {
 			adLL = (LinearLayout) findViewById(R.id.ad_ll);
 		    adLL.addView(adView);
 		    adRequest = new AdRequest.Builder()
-                    //.addTestDevice("A4163BE3E608B682241FF4D4EA7BD69D")
+                    .addTestDevice("A4163BE3E608B682241FF4D4EA7BD69D")
                     .build();
 		    //adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
 		    adView.loadAd(adRequest);
@@ -132,6 +134,7 @@ public class MainActivity extends Activity {
 		
 		prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
     	String category = prefs.getString("category", "birds");
+        showTimer = prefs.getBoolean("enable_timer", true);
 		switch (category) {
 			case "mammals":
 				sTimer = "1:00.0";
@@ -204,7 +207,12 @@ public class MainActivity extends Activity {
     		
     	};
     	
-		countDown.start();
+		if(showTimer) {
+            countDown.start();
+        }
+        else {
+            timer.setText(BLANK_TIMER);
+        }
 		loadBoard();
 	}
 	
@@ -251,6 +259,29 @@ public class MainActivity extends Activity {
 		});
 		alertConfirm.show();
 	}
+
+    public void alertGameComplete() {
+        Log.d(getClass().toString(), "alertGameComplete");
+        showResumeAlert = false;
+        board.close();
+
+        /*Achievements achievement = new Achievements(this);
+        achievement.setAchievement(longCategory, continuousScoreAchieved > continuousScore ? continuousScoreAchieved : continuousScore, this);
+        achievement.close();*/
+
+        AlertDialog.Builder alertConfirm = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        alertConfirm.setTitle(R.string.game_complete);
+        alertConfirm.setView(inflater.inflate(R.layout.alert_gamecomplete, null));
+        alertConfirm.setCancelable(false);
+        alertConfirm.setNeutralButton(getResources().getString(R.string.close), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertNewGame();
+            }
+        });
+        alertConfirm.show();
+    }
 	
 	public void alertResume() {
 		showResumeAlert = false;
@@ -263,7 +294,12 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				showResumeAlert = true;
-				countDown.start();
+				if(showTimer) {
+                    countDown.start();
+                }
+                else {
+                    timer.setText(BLANK_TIMER);
+                }
 			}
 		});
 		alertConfirm.show();
@@ -318,10 +354,16 @@ public class MainActivity extends Activity {
 	private void isMatched(int index) {
 		score++;
 		continuousScore++;
-		if(board.removeFlag(index)) loadBoard();
+
+		if(board.removeFlag(index)) {
+            loadBoard();
+        }
+        else {
+            alertGameComplete();
+        }
 	}
-	
-	private CharSequence formatTime(long millisUntilFinished) {
+
+    private CharSequence formatTime(long millisUntilFinished) {
 		int timer100mili = (int) (millisUntilFinished / 100);
 		int timerSec = timer100mili / 10;
 		int timerMin = timerSec / 60;

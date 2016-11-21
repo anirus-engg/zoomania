@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.udaan.zoomania.ui.MainActivity;
 import com.udaan.zoomania.ui.R;
 
 import android.content.Context;
@@ -81,6 +82,10 @@ public class Board {
 	public boolean removeFlag(int index) {
 		Log.d(getClass().toString(), "Removing flag index: " + data[randInt[index]][0] + " randInt:" + randInt[index]);
 		Log.d(getClass().toString(), "Removed:" + list.remove(index));
+		Log.d(getClass().toString(), "Remaining: " + list.size());
+        if (list.size() <= 3) {
+            return false;
+        }
 		Collections.shuffle(list);
 		return true;
 	}
