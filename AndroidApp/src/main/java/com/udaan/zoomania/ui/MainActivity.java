@@ -241,17 +241,17 @@ public class MainActivity extends Activity {
 		Log.d(getClass().toString(), "alertGameOver");
 		showResumeAlert = false;
 		board.close();
-		
+
 		Achievements achievement = new Achievements(this);
 		achievement.setAchievement(longCategory, continuousScoreAchieved > continuousScore ? continuousScoreAchieved : continuousScore, this);
 		achievement.close();
-		
+
 		AlertDialog.Builder alertConfirm = new AlertDialog.Builder(this);
 		LayoutInflater inflater = this.getLayoutInflater();
 		alertConfirm.setTitle(R.string.times_up);
 		alertConfirm.setView(inflater.inflate(R.layout.alert_gameover, null));
 		alertConfirm.setCancelable(false);
-		alertConfirm.setNeutralButton(getResources().getString(R.string.close), new DialogInterface.OnClickListener() { 
+		alertConfirm.setNeutralButton(getResources().getString(R.string.close), new DialogInterface.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				alertNewGame();

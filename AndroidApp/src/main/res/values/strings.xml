@@ -18,7 +18,7 @@
     <string name="space">\u0020</string>
     <string name="score">0</string>
     <string name="score_text">Score:</string>
-    <string name="times_up">Game Over.  Disable timer to learn.</string>
+    <string name="times_up">Times Up.  Disable timer to learn.</string>
     <string name="new_game">New Game</string>
     <string name="resume">Resume</string>
     <string name="facebook_post">\u0020Post your score</string>

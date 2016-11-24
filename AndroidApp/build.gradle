@@ -21,8 +21,8 @@ android {
     }
     dependencies {
         compile 'com.android.support:appcompat-v7:25.0.1'
-        compile files('libs/javacsv.jar')
         compile 'com.google.firebase:firebase-ads:9.0.2'
+        compile files('libs/javacsv.jar')
     }
     productFlavors {
     }
